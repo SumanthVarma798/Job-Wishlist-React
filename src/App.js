@@ -1,23 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Headings from "./Components/Headings";
+import Jobs from "./Components/Jobs";
+import AddJobForm from "./Components/AddJobForm";
 
 function App() {
+  const [jobsCount, setJobsCount] = useState(0);
+  const [addjobtrigger, setaddjobtrigger] = useState(false);
+
+  const handleDelete = (jobid) => {
+    setJobsCount(jobsCount - 1);
+  };
+
+  const retrieveForm = (form) => {
+    console.log(form);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div
+      style={{
+        width: "30vw",
+        height: "auto",
+        marginLeft: "auto",
+        marginRight: "auto",
+        marginTop: "5vh",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-start",
+        alignItems: "center",
+      }}
+    >
+      {addjobtrigger === true ? (
+        <AddJobForm
+          setJobsCount={setJobsCount}
+          jobCount={jobsCount}
+          setaddjobtrigger={setaddjobtrigger}
+          retrieveForm={retrieveForm}
+        />
+      ) : (
+        ""
+      )}
+      <Headings count={jobsCount} />
+      <Jobs setaddjobtrigger={setaddjobtrigger} handleDelete={handleDelete} />
     </div>
   );
 }

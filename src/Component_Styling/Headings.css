@@ -1,0 +1,40 @@
+.headings-container {
+  width: inherit;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.app-name-and-icon {
+  width: inherit;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: -7.5vh;
+}
+
+.app-name-and-icon i {
+  margin-left: 2vw;
+  margin-right: 5.5vw;
+}
+
+.app-name-and-icon h1 {
+  pointer-events: none;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 500;
+  font-size: 3em;
+  letter-spacing: 0.05em;
+}
+
+.jobs-count {
+  pointer-events: none;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 400;
+  font-size: 2em;
+  letter-spacing: 0.05em;
+  color: #777777;
+}
