@@ -23,20 +23,26 @@ app.get("/", (req, res) => {
   });
 });
 
-app.post("/", (req, res) => {
+app.post("/", (req) => {
   const formDetails = req.body;
   db.query(
     "INSERT INTO jobs (company_name, role, time_added) VALUES (?, ?, NOW())",
     [formDetails.company, formDetails.role],
     (err) => {
       if (err) console.error(err);
+      else {
+        console.log("Successfully added the job");
+      }
     }
   );
 });
 
-app.delete("/:id", (req, res) => {
+app.delete("/:id", (req) => {
   db.query("DELETE FROM jobs WHERE id = ?", req.params.id, (err) => {
     if (err) console.error(err);
+    else {
+      console.log("Successfully deleted");
+    }
   });
 });
 
