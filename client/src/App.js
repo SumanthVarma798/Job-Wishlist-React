@@ -8,8 +8,7 @@ function App() {
   const [jobs, setJobs] = useState([]);
   const [jobsCount, setJobsCount] = useState(0);
   const [addjobtrigger, setaddjobtrigger] = useState(false);
-  const PORT = process.env.PORT || 3002;
-  const endPoint = "http://localhost:" + PORT + "/";
+  const endPoint = "https://wishlist-mysql-server.herokuapp.com/";
 
   const handleDelete = (jobId) => {
     Axios.delete(endPoint + jobId);

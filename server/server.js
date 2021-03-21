@@ -2,13 +2,13 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const mysql = require("mysql");
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT || 3306;
 
 const db = mysql.createConnection({
-  user: "root",
-  host: "localhost",
-  password: "Sumanth_798",
-  database: "jobsdb",
+  user: "b2e37ed6790d48",
+  host: "us-cdbr-east-03.cleardb.com",
+  password: "aecd3564",
+  database: "heroku_ffc27e08a25f591",
 });
 
 app.use(cors());
