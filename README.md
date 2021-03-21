@@ -1,6 +1,6 @@
-# A job whishlist application
+# A job wishlist application
 
-### A Job Whishlist application that lets you track a list of the jobs.
+### A Job Wishlist application that lets you track a list of the jobs.
 
 #### This project is available at [https://jobwishlist.herokuapp.com](https://jobwishlist.herokuapp.com)
 
