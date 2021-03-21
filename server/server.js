@@ -41,5 +41,5 @@ app.delete("/:id", (req, res) => {
 });
 
 app.listen(PORT, () =>
-  console.log("MySQL server listening on port " + PORT + "...")
+  console.log("MySQL server running on port " + PORT + "...")
 );
