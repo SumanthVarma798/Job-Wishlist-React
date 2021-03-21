@@ -5,18 +5,12 @@ import "../Component_Styling/Jobs.css";
 
 class Jobs extends Component {
   jobs_with_colors = [];
-  colors = {
-    1: "#E27D60",
-    2: "#659DBD",
-    3: "#E8A87C",
-    4: "#C38D9E",
-    5: "#41B3A3",
-  };
+  colors = ["#E27D60", "#659DBD", "#E8A87C", "#C38D9E", "#41B3A3"];
 
   componentDidMount() {
-    for (let i = 1; i <= this.props.jobs.length; i++) {
+    for (let i = 1; i <= this.props.allJobs.length; i++) {
       this.jobs_with_colors.push({
-        jobDetails: this.props.jobs[i],
+        jobDetails: this.props.allJobs[i - 1],
         jobColor: this.colors[i % this.colors.length],
       });
     }

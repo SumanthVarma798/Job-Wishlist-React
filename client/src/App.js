@@ -8,7 +8,8 @@ function App() {
   const [jobs, setJobs] = useState([]);
   const [jobsCount, setJobsCount] = useState(0);
   const [addjobtrigger, setaddjobtrigger] = useState(false);
-  const endPoint = "https://wishlist-mysql-server.herokuapp.com/";
+  const endPoint = "https://wishlist-mysql-server.herokuapp.com/"; // production DB endPoint
+  // const endPoint = "http://localhost:3305/"; // development DB endPoint
 
   const handleDelete = (jobId) => {
     Axios.delete(endPoint + jobId);
@@ -20,11 +21,9 @@ function App() {
   };
 
   const getJobs = () => {
-    Axios.get(endPoint).then((response) => {
-      let allJobs = response.data;
-      setJobsCount(allJobs.length);
-      setJobs(allJobs);
-    });
+    Axios.get(endPoint)
+      .then((response) => setJobs(response.data))
+      .then(() => setJobsCount(jobs.length));
   };
 
   useEffect(() => getJobs());
@@ -55,7 +54,7 @@ function App() {
       )}
       <Headings count={jobsCount} />
       <Jobs
-        jobs={jobs}
+        allJobs={jobs}
         setaddjobtrigger={setaddjobtrigger}
         handleDelete={handleDelete}
         setJobsCount={setJobsCount}

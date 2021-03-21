@@ -4,15 +4,22 @@ const app = express();
 const mysql = require("mysql");
 const PORT = process.env.PORT || 3305;
 
-app.use(cors());
-app.use(express.json());
+// const db = mysql.createConnection({
+//   user: "b2e37ed6790d48",
+//   host: "us-cdbr-east-03.cleardb.com",
+//   password: "aecd3564",
+//   database: "heroku_ffc27e08a25f591",
+// });
 
 const db = mysql.createConnection({
-  user: "b2e37ed6790d48",
-  host: "us-cdbr-east-03.cleardb.com",
-  password: "aecd3564",
-  database: "heroku_ffc27e08a25f591",
+  user: "root",
+  host: "localhost",
+  password: "Sumanth_798",
+  database: "jobsdb",
 });
+
+app.use(cors());
+app.use(express.json());
 
 app.get("/", (req, res) => {
   db.query("SELECT * FROM jobs", (err, result) => {

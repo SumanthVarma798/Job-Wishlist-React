@@ -21,14 +21,11 @@ function Job({ companyName, role, jobId, timeAdded, jobColor, deleteJob }) {
   };
 
   let time_job_was_added = sqlToJsDate(timeAdded);
-  console.log(time_job_was_added);
-  console.log(new Date());
   let timeAddedAgo = Math.round(
     (time_job_was_added - new Date()) / 1000 / 60 / 60
   );
 
   useEffect(() => {
-    console.log(jobColor);
     $(`#job-${jobId}`).css("background-color", jobColor);
 
     $(`#job-${jobId}`).on("mouseover", () => {
