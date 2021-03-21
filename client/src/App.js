@@ -8,7 +8,7 @@ function App() {
   const [jobs, setJobs] = useState([]);
   const [jobsCount, setJobsCount] = useState(0);
   const [addjobtrigger, setaddjobtrigger] = useState(false);
-  const PORT = 3002;
+  const PORT = process.env.PORT || 3002;
   const endPoint = "http://localhost:" + PORT + "/";
 
   const handleDelete = (jobId) => {
@@ -48,6 +48,7 @@ function App() {
         <AddJobForm
           setaddjobtrigger={setaddjobtrigger}
           addJobToDB={addJobToDB}
+          jobs={jobs}
           getJobs={getJobs}
         />
       ) : (

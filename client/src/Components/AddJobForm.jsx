@@ -13,8 +13,30 @@ class AddJobForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  validateForm = (form) => {
+    if (form.company !== null && form.company !== "") {
+      if (form.role !== null && form.role !== "") {
+        this.props.jobs.forEach((job) => {
+          if (job.company_name === form.company && job.role === form.role) {
+            alert("The job already exists !!!");
+            return false;
+          }
+        });
+        return true;
+      } else {
+        alert("Role cannot be empty");
+        return false;
+      }
+    } else {
+      alert("Company name cannot be empty");
+      return false;
+    }
+  };
+
   handleSubmit = (event) => {
-    this.props.addJobToDB(this.formDetails);
+    if (this.validateForm(this.formDetails)) {
+      this.props.addJobToDB(this.formDetails);
+    }
     this.props.setaddjobtrigger(false);
     this.props.getJobs();
     event.preventDefault();
