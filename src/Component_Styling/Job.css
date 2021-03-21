@@ -6,6 +6,7 @@
   justify-content: center;
   align-items: center;
   border-radius: 10px;
+  margin-bottom: 1em;
 }
 
 .icon-container {
@@ -22,8 +23,8 @@
   height: auto;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .delete-button-container {
@@ -35,17 +36,8 @@
   align-items: center;
 }
 
-#delete-button {
-  cursor: pointer;
-  color: transparent;
-  background-color: transparent;
-  border-radius: 50%;
-  padding: 0.1em;
-  margin-right: 0.1em;
-  margin-top: 0.1em;
-}
-
 .details-container {
+  pointer-events: none;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -77,13 +69,13 @@
 }
 
 .extra-details {
+  pointer-events: none;
   width: inherit;
   height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
-  margin-right: 1em;
 }
 
 .time-added {
@@ -94,4 +86,5 @@
   font-size: 1em;
   color: #fff;
   letter-spacing: 0.05em;
+  margin-right: 1em;
 }

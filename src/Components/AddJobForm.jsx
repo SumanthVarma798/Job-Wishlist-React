@@ -7,7 +7,6 @@ class AddJobForm extends Component {
     this.formDetails = {
       company: "",
       role: "",
-      timeAdded: null,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -15,10 +14,9 @@ class AddJobForm extends Component {
   }
 
   handleSubmit = (event) => {
-    this.formDetails.timeAdded = new Date().getUTCMilliseconds();
-    this.props.retrieveForm(this.formDetails);
-    this.props.setJobsCount(this.props.jobCount + 1);
+    this.props.addJobToDB(this.formDetails);
     this.props.setaddjobtrigger(false);
+    this.props.getJobs();
     event.preventDefault();
   };
 
@@ -33,10 +31,7 @@ class AddJobForm extends Component {
   render() {
     return (
       <div className="form-container">
-        <div
-          className="blur-screen"
-          //   onClick={this.props.setaddjobtrigger(false)}
-        ></div>
+        <div className="blur-screen"></div>
         <div className="form">
           <h1>Add Job</h1>
           <form onSubmit={this.handleSubmit}>

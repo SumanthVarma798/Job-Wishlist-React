@@ -1,19 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Headings from "./Components/Headings";
 import Jobs from "./Components/Jobs";
 import AddJobForm from "./Components/AddJobForm";
+import Axios from "axios";
 
 function App() {
+  const [jobs, setJobs] = useState([]);
   const [jobsCount, setJobsCount] = useState(0);
   const [addjobtrigger, setaddjobtrigger] = useState(false);
+  const PORT = 3002;
+  const endPoint = "http://localhost:" + PORT + "/";
 
-  const handleDelete = (jobid) => {
-    setJobsCount(jobsCount - 1);
+  const handleDelete = (jobId) => {
+    Axios.delete(endPoint + jobId);
+    getJobs();
   };
 
-  const retrieveForm = (form) => {
-    console.log(form);
+  const addJobToDB = (form) => {
+    Axios.post(endPoint, form).then(() => setJobsCount(jobsCount + 1));
   };
+
+  const getJobs = () => {
+    Axios.get(endPoint).then((response) => {
+      let allJobs = response.data;
+      setJobsCount(allJobs.length);
+      setJobs(allJobs);
+    });
+  };
+
+  useEffect(() => getJobs());
 
   return (
     <div
@@ -31,16 +46,20 @@ function App() {
     >
       {addjobtrigger === true ? (
         <AddJobForm
-          setJobsCount={setJobsCount}
-          jobCount={jobsCount}
           setaddjobtrigger={setaddjobtrigger}
-          retrieveForm={retrieveForm}
+          addJobToDB={addJobToDB}
+          getJobs={getJobs}
         />
       ) : (
         ""
       )}
       <Headings count={jobsCount} />
-      <Jobs setaddjobtrigger={setaddjobtrigger} handleDelete={handleDelete} />
+      <Jobs
+        jobs={jobs}
+        setaddjobtrigger={setaddjobtrigger}
+        handleDelete={handleDelete}
+        setJobsCount={setJobsCount}
+      />
     </div>
   );
 }
