@@ -2,7 +2,10 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const mysql = require("mysql");
-const PORT = process.env.PORT || 3306;
+const PORT = process.env.PORT || 3305;
+
+app.use(cors());
+app.use(express.json());
 
 const db = mysql.createConnection({
   user: "b2e37ed6790d48",
@@ -10,9 +13,6 @@ const db = mysql.createConnection({
   password: "aecd3564",
   database: "heroku_ffc27e08a25f591",
 });
-
-app.use(cors());
-app.use(express.json());
 
 app.get("/", (req, res) => {
   db.query("SELECT * FROM jobs", (err, result) => {
@@ -23,7 +23,7 @@ app.get("/", (req, res) => {
   });
 });
 
-app.post("/", (req) => {
+app.post("/", (req, res) => {
   const formDetails = req.body;
   db.query(
     "INSERT INTO jobs (company_name, role, time_added) VALUES (?, ?, NOW())",
@@ -37,11 +37,11 @@ app.post("/", (req) => {
   );
 });
 
-app.delete("/:id", (req) => {
+app.delete("/:id", (req, res) => {
   db.query("DELETE FROM jobs WHERE id = ?", req.params.id, (err) => {
     if (err) console.error(err);
     else {
-      console.log("Successfully deleted");
+      console.log("Successfully deleted the job");
     }
   });
 });

@@ -1,6 +1,8 @@
 # A job whishlist application
 
-### A fully working prototype of a job whishlist that lets you maintain a list of the jobs you apply to
+### A Job Whishlist application that lets you track a list of the jobs.
+
+#### This project is available at [https://jobwishlist.herokuapp.com](https://jobwishlist.herokuapp.com)
 
 ###### This project uses the following technologies
 
