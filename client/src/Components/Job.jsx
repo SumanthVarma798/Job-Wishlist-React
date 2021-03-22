@@ -2,7 +2,14 @@ import React, { useEffect } from "react";
 import $ from "jquery";
 import "../Component_Styling/Job.css";
 
-function Job({ companyName, role, jobId, timeAdded, jobColor, deleteJob }) {
+function Job({
+  companyName,
+  role,
+  jobId,
+  timeAdded,
+  jobColor,
+  deleteJobFromDB,
+}) {
   const sqlToJsDate = (dateStr) => {
     let sqlDateLis = dateStr.substring(0, dateStr.length - 1).split("T");
     let sqlDate = sqlDateLis[0] + " " + sqlDateLis[1];
@@ -61,7 +68,7 @@ function Job({ companyName, role, jobId, timeAdded, jobColor, deleteJob }) {
           <div
             className="fa fa-trash-o fa-fw fa-2x"
             id={`delete-button-${jobId}`}
-            onClick={() => deleteJob(jobId)}
+            onClick={() => deleteJobFromDB(jobId)}
             style={{
               cursor: "pointer",
               color: "transparent",

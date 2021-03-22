@@ -38,7 +38,6 @@ class AddJobForm extends Component {
       this.props.addJobToDB(this.formDetails);
     }
     this.props.setaddjobtrigger(false);
-    this.props.getJobs();
     event.preventDefault();
   };
 

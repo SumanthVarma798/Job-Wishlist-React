@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Headings from "./Components/Headings";
 import Jobs from "./Components/Jobs";
 import AddJobForm from "./Components/AddJobForm";
@@ -11,22 +11,15 @@ function App() {
   const endPoint = "https://wishlist-mysql-server.herokuapp.com/"; // production DB endPoint
   // const endPoint = "http://localhost:3305/"; // development DB endPoint
 
-  const handleDelete = (jobId) => {
+  const deleteJobFromDB = (jobId) => {
     Axios.delete(endPoint + jobId);
-    getJobs();
+    window.location.reload();
   };
 
   const addJobToDB = (form) => {
-    Axios.post(endPoint, form).then(() => setJobsCount(jobsCount + 1));
+    Axios.post(endPoint, form);
+    window.location.reload();
   };
-
-  const getJobs = () => {
-    Axios.get(endPoint)
-      .then((response) => setJobs(response.data))
-      .then(() => setJobsCount(jobs.length));
-  };
-
-  useEffect(() => getJobs());
 
   return (
     <div
@@ -47,16 +40,15 @@ function App() {
           setaddjobtrigger={setaddjobtrigger}
           addJobToDB={addJobToDB}
           jobs={jobs}
-          getJobs={getJobs}
         />
       ) : (
         ""
       )}
       <Headings count={jobsCount} />
       <Jobs
-        allJobs={jobs}
         setaddjobtrigger={setaddjobtrigger}
-        handleDelete={handleDelete}
+        deleteJobFromDB={deleteJobFromDB}
+        setJobs={setJobs}
         setJobsCount={setJobsCount}
       />
     </div>

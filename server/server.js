@@ -4,19 +4,19 @@ const app = express();
 const mysql = require("mysql");
 const PORT = process.env.PORT || 3305;
 
-// const db = mysql.createConnection({
-//   user: "b2e37ed6790d48",
-//   host: "us-cdbr-east-03.cleardb.com",
-//   password: "aecd3564",
-//   database: "heroku_ffc27e08a25f591",
-// });
-
 const db = mysql.createConnection({
-  user: "root",
-  host: "localhost",
-  password: "Sumanth_798",
-  database: "jobsdb",
-});
+  user: "b2e37ed6790d48",
+  host: "us-cdbr-east-03.cleardb.com",
+  password: "aecd3564",
+  database: "heroku_ffc27e08a25f591",
+}); // production DB connection
+
+// const db = mysql.createConnection({
+//   user: "root",
+//   host: "localhost",
+//   password: "Sumanth_798",
+//   database: "jobsdb",
+// }); // development DB connection
 
 app.use(cors());
 app.use(express.json());
@@ -31,10 +31,9 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", (req, res) => {
-  const formDetails = req.body;
   db.query(
     "INSERT INTO jobs (company_name, role, time_added) VALUES (?, ?, NOW())",
-    [formDetails.company, formDetails.role],
+    [req.body.company, req.body.role],
     (err) => {
       if (err) console.error(err);
       else {
